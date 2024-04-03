@@ -41,7 +41,7 @@ def main():
             print(joined_word)
 
             try:
-                player_guess = str(input("\nPlease select a letter between A-Z" + "\n> ")).lower()
+                player_guess = str(input("\nType in a letter:" + "\n> ")).lower()
             except: # check valid input
                 print("That is not valid input. Please try again.")
                 continue                
@@ -77,6 +77,7 @@ def main():
         response = input("> ").lower()
         if response not in ("yes", "y", "yeah", "yep", "1", "ok"):
             play_again = False
+            exit()
 
 if __name__ == "__main__":
     main()
