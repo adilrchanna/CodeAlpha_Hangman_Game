@@ -1,11 +1,14 @@
 # Hangman Game
 
 import random
+from colorama import init
 
 def main():
-    welcome = ['Welcome to Hangman! A word will be chosen at random and',
-               'you must try to guess the word correctly letter by letter',
-               'before you run out of attempts. Good luck!'
+
+    init()
+    welcome = ['\033[1;37mWelcome to \033[1;4m\033[1;31mHangman\033[0m\033[1;37m! You must try to guess the given word',
+               'letter by letter before you run out of your ten attempts.',
+               'A correct guess does not use up your attempts. \033[1;33m\033[1mGood luck!\033[0m'
                ]
 
     for line in welcome:
@@ -36,12 +39,12 @@ def main():
 
 
         while (attempts != 0 and "-" in word_guessed):
-            print(("\nAttempts Remaining: {}").format(attempts))
+            print(("\033[1;31m\n\nAttempts Remaining: {}").format(attempts))
             joined_word = "".join(word_guessed)
-            print(joined_word)
+            print("\033[1;34mWord: " + joined_word)
 
             try:
-                player_guess = str(input("\nType in a letter:" + "\n> ")).lower()
+                player_guess = str(input("\033[1;37m\nType in a letter: ")).lower()
             except: # check valid input
                 print("That is not valid input. Please try again.")
                 continue                
@@ -68,9 +71,9 @@ def main():
                 attempts -= 1
 
         if "-" not in word_guessed: # no blanks remaining
-            print(("\nCongratulations! You guessed the word, {}").format(chosen_word))
+            print(("\n\033[1;4m\033[1;32mCongratulations\033[0m\033[1;37m! You guessed the word, {}").format(chosen_word))
         else: # loop must have ended because attempts reached 0
-            print(("\nUnlucky! The word was {}.").format(chosen_word))
+            print(("\n\033[1;4m\033[1;31mYou lose\033[0m\033[1;37m! The word was {}.").format(chosen_word))
 
         print("\nWould you like to play again?")
 
@@ -81,3 +84,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+raw_input()
